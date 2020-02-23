@@ -1,0 +1,26 @@
+<?php
+
+/* Implement hook_help */
+function behp_custom_help($path, $arg) {
+  switch ($path) {
+    case "admin/help#ts_username_filler":
+      return '' . t("Strips utf8 chars from the transcripts of interviews") . '';
+      break;
+  }
+}
+
+/*----------------------------------------------------------------------------------\
+| Function:        behp_custom_node_submit                                          |
+| Description:     Strip out newlines from transcriptions and replace with <br>     |
+| Aguments:        node array, form & form_state                                    |
+| Returns:                                                                          |
+|-----------------------------------------------------------------------------------|
+| 2020-02-21       RPF      Initial ver                                             |
+\----------------------------------------------------------------------------------*/
+function behp_custom_node_submit($node, $form, &$form_state) {
+  if($node->type="interview") {
+    $stripped = nl2br($node->field_transcription_text['und'][0]['value']);
+    $node->field_transcription_text['und'][0]['value']=$stripped;
+    node_save($node);
+  }
+}

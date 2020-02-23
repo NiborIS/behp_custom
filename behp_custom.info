@@ -1,0 +1,5 @@
+name = BEHP Custom
+description = Custom module for BEHP site
+core = 7.x
+package = "BEHP Custom"
+files[] = behp_custom.module

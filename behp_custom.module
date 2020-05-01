@@ -16,9 +16,10 @@ function behp_custom_help($path, $arg) {
 | Returns:                                                                          |
 |-----------------------------------------------------------------------------------|
 | 2020-02-21       RPF      Initial ver                                             |
+| 2020-05-01       RPF      Fixed bug = != == ! and bad in if                       |
 \----------------------------------------------------------------------------------*/
 function behp_custom_node_submit($node, $form, &$form_state) {
-  if($node->type="interview") {
+  if($node->type=="interview") {
     $stripped = nl2br($node->field_transcription_text['und'][0]['value']);
     $node->field_transcription_text['und'][0]['value']=$stripped;
     node_save($node);
